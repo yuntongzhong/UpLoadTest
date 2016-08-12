@@ -26,4 +26,8 @@ public interface ImageService {
      */
     @POST("WebServer/upload")
     Observable<Str> uploadFileWithRequestBody(@Body MultipartBody multipartBody, @Query("user") String user);
+
+    @POST("WebServer/upload")
+    Observable<String> uploadTest(@Body MultipartBody multipartBody, @Query("imeiVersion") String imeiVersion);
+
 }

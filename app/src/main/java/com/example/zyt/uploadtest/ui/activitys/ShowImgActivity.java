@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -86,6 +87,9 @@ public class ShowImgActivity extends AppCompatActivity {
                             @Override
                             public void convert(ViewHolder holder, ImageInfo imageInfo) {
                                 ImageView imageView = holder.getView(R.id.id_img);
+                                ViewGroup.LayoutParams layoutParams=imageView.getLayoutParams();
+                                layoutParams.height= gridview.getWidth()/3;
+                                Log.e("width", gridview.getWidth()/3+"");
                                 Log.e("imgurl", imageInfo.getUrl());
                                 String url=imageInfo.getUrl();
                                 url=url.startsWith("http://")?url:"http://"+url;

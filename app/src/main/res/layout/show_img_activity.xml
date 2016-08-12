@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/gridviewBg"
     android:cacheColorHint="@android:color/transparent"
-    android:horizontalSpacing="2dp"
+    android:horizontalSpacing="1dp"
     android:listSelector="@android:color/transparent"
     android:numColumns="3"
-    android:verticalSpacing="2dp">
+    android:verticalSpacing="1dp">
 </GridView>
