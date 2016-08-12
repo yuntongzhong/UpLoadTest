@@ -89,10 +89,7 @@ public class ShowImgActivity extends AppCompatActivity {
                                 ImageView imageView = holder.getView(R.id.id_img);
                                 ViewGroup.LayoutParams layoutParams=imageView.getLayoutParams();
                                 layoutParams.height= gridview.getWidth()/3;
-                                Log.e("width", gridview.getWidth()/3+"");
-                                Log.e("imgurl", imageInfo.getUrl());
                                 String url=imageInfo.getUrl();
-                                url=url.startsWith("http://")?url:"http://"+url;
                                 Glide.with(ShowImgActivity.this).load(url)
                                        .into(imageView);
                             }
