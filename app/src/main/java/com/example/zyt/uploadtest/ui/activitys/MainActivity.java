@@ -90,10 +90,10 @@ public class MainActivity extends AppCompatActivity {
                 clearlist();
                 break;
             case R.id.btn_addpic:
-                addpic();
+                addPic();
                 break;
             case R.id.btn_addfile:
-                addfile();
+                addFile();
                 break;
             case R.id.btn_upload:
                 uploadAll();
@@ -118,14 +118,14 @@ public class MainActivity extends AppCompatActivity {
         tvCount.setText("已选择" + paths.size() + "个文件");
     }
 
-    void addpic(){
+    void addPic(){
         Intent imgIntent = new Intent(Intent.ACTION_GET_CONTENT);
         imgIntent.setType("image/*");
         imgIntent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(imgIntent, SELECTOR_FILE);
     }
 
-    private void addfile() {
+    private void addFile() {
         Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
         fileIntent.setType("*/*");//设置类型，任意后缀的可以这样写。
         fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
