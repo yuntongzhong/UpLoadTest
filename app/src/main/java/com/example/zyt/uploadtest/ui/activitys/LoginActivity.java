@@ -83,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onNext(Result result) {
                         if("0".equals(result.getCode())){
                             startActivity(new Intent(LoginActivity.this,MainMenuActivity.class));
+                        }else {
+                            ToastUtils.showToast(LoginActivity.this,result.getResult());
                         }
 
                     }
