@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_clearlist:
-                clearlist();
+                clearList();
                 break;
             case R.id.btn_addpic:
                 addPic();
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void clearlist(){
+    void clearList(){
         paths.clear();
         arrayAdapter.notifyDataSetChanged();
         tvCount.setText("已选择" + paths.size() + "个文件");
