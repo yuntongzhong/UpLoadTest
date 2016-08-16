@@ -15,15 +15,16 @@
             android:name="com.example.zyt.uploadtest.gilde.GlideModuleImpl"
             android:value="GlideModule" />
 
-        <activity android:name=".ui.activitys.MainMenuActivity">
+        <activity android:name=".ui.activitys.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activitys.MainActivity" />
+        <activity android:name=".ui.activitys.UploadActivity" />
         <activity android:name=".ui.activitys.ShowImgActivity" />
+        <activity android:name=".ui.activitys.MainMenuActivity" />
         <!--<activity android:name=".ui.activitys.Main2Activity" />-->
     </application>
 

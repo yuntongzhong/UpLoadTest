@@ -56,7 +56,7 @@ public class ShowImgActivity extends AppCompatActivity {
     }
 
     void getInfo() {
-        RetrofitBuilder.buildRetrofit().create(ImageService.class)
+        RetrofitBuilder.getApiService()
                 .getImgInfo("zhong")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

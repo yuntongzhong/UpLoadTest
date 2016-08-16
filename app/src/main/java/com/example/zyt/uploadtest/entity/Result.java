@@ -3,14 +3,20 @@ package com.example.zyt.uploadtest.entity;
 /**
  * Created by Administrator on 2016/6/8.
  */
-public class Str {
+public class Result {
 
-
-    /**
-     * result : 缺少user参数
-     */
+    private String code;
 
     private String result;
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public String getResult() {
         return result;

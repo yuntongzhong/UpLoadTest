@@ -22,7 +22,15 @@
 
     <color name="gridviewBg">#FFFFFF</color>
 
-    <drawable name="pressed_gray">#0c000000</drawable>
-    <drawable name="selected_gray">#2c000000</drawable>
-    <drawable name="gray">#4D000000</drawable>
+    <color name="pressed_gray">#0c000000</color>
+    <color name="selected_gray">#2c000000</color>
+    <color name="gray">#4D000000</color>
+
+
+    <color name="btn_normal">#303F9F</color>
+    <color name="btn_pressed">#99303F9F</color>
+
+    <color name="textColorWhite">#FFFFFF</color><!--白色字体颜色-->
+    <color name="loginEdtNoFousColor">#55FFFFFF</color><!--登录界面输入框无焦点颜色-->
+
 </resources>

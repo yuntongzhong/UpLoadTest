@@ -36,7 +36,7 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.upload:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, UploadActivity.class));
                 break;
             case R.id.show:
                 startActivity(new Intent(this, ShowImgActivity.class));

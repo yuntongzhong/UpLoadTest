@@ -15,22 +15,23 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitBuilder {
     private static Retrofit retrofit;
     private static OkHttpClient client;
+    private static ImageService imageService;
 
-    public synchronized static Retrofit buildRetrofit() {
+    public synchronized static ImageService  getApiService() {
         if (retrofit == null) {
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
             GsonConverterFactory gsonConverterFactory = GsonConverterFactory.create(gson);
 
             retrofit = new Retrofit.Builder().client(getHttpClient())
-//                    .baseUrl("http://192.168.1.85:8080/")
                     .baseUrl("http://yuntongweb.com/")
                     .addConverterFactory(gsonConverterFactory)
                     //.addConverterFactory(ScalarsConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
+            imageService=retrofit.create(ImageService.class);
 
         }
-        return retrofit;
+        return imageService;
     }
 
     public static OkHttpClient getHttpClient(){

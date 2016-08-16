@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zyt.uploadtest.R;
-import com.example.zyt.uploadtest.entity.Str;
+import com.example.zyt.uploadtest.entity.Result;
 import com.example.zyt.uploadtest.network.ImageService;
 import com.example.zyt.uploadtest.network.MultipartBuilder;
 import com.example.zyt.uploadtest.network.RetrofitBuilder;
@@ -37,8 +36,8 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity {
-    public static final String TAG = MainActivity.class.getSimpleName();
+public class UploadActivity extends AppCompatActivity {
+    public static final String TAG = UploadActivity.class.getSimpleName();
     public static final int SELECTOR_FILE = 0X1235;
 
     @Bind(R.id.listview)
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     @OnItemClick(R.id.listview)
     public void onItemClick(int position) {
         String path = paths.get(position);
-        Toast.makeText(MainActivity.this, path, Toast.LENGTH_SHORT).show();
+        Toast.makeText(UploadActivity.this, path, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -112,27 +111,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void clearList(){
+    private void clearList(){
         paths.clear();
         arrayAdapter.notifyDataSetChanged();
         tvCount.setText("已选择" + paths.size() + "个文件");
     }
 
-    void addPic(){
-        Intent imgIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        imgIntent.setType("image/*");
-        imgIntent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(imgIntent, SELECTOR_FILE);
+    private void addPic(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, SELECTOR_FILE);
     }
 
     private void addFile() {
-        Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        fileIntent.setType("*/*");//设置类型，任意后缀的可以这样写。
-        fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(fileIntent, SELECTOR_FILE);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");//设置类型，任意后缀的可以这样写。
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, SELECTOR_FILE);
     }
 
-    void uploadAll() {
+    private void uploadAll() {
         List<File> files = new ArrayList<>();
         for (String path : paths) {
             File file = new File(path);
@@ -141,11 +140,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         MultipartBody body = MultipartBuilder.filesToMultipartBody(files);
-        RetrofitBuilder.buildRetrofit().create(ImageService.class)
+        RetrofitBuilder.getApiService()
                 .uploadFileWithRequestBody(body, "zhong")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Str>() {
+                .subscribe(new Subscriber<Result>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -156,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNext(Str s) {
-                        Toast.makeText(MainActivity.this, s.getResult(), Toast.LENGTH_SHORT).show();
+                    public void onNext(Result s) {
+                        Toast.makeText(UploadActivity.this, s.getResult(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
