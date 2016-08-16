@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UpLoadTest</string>
+    <string name="app_name">UpLoad</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="drawer_open">Menu opened</string>
     <string name="drawer_close">Menu closed</string>

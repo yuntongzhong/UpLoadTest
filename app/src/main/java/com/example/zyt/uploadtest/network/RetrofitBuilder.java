@@ -23,7 +23,7 @@ public class RetrofitBuilder {
 
             retrofit = new Retrofit.Builder().client(getHttpClient())
 //                    .baseUrl("http://192.168.1.85:8080/")
-                    .baseUrl("http://218.92.57.58:3308/")
+                    .baseUrl("http://yuntongweb.com/")
                     .addConverterFactory(gsonConverterFactory)
                     //.addConverterFactory(ScalarsConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

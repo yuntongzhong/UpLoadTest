@@ -28,15 +28,22 @@
         android:id="@+id/btn_clearlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_add"
+        android:layout_above="@+id/btn_addpic"
         android:text="清空列表" />
 
     <Button
-        android:id="@+id/btn_add"
+        android:id="@+id/btn_addpic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_addfile"
+        android:text="选择图片" />
+
+    <Button
+        android:id="@+id/btn_addfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_upload"
-        android:text="添加一个文件" />
+        android:text="选择文件" />
 
     <Button
         android:id="@+id/btn_upload"
