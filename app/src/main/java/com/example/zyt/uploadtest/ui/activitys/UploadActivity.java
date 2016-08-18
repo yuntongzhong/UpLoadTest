@@ -67,15 +67,13 @@ public class UploadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, paths);
-
         listview.setAdapter(arrayAdapter);
     }
 
     @OnItemClick(R.id.listview)
     public void onItemClick(int position) {
         String path = paths.get(position);
-        Toast.makeText(UploadActivity.this, path, Toast.LENGTH_SHORT).show();
-
+        ToastUtils.showToast(this, path);
     }
 
     @OnItemLongClick(R.id.listview)
@@ -110,15 +108,17 @@ public class UploadActivity extends AppCompatActivity {
             Uri uri = data.getData();//得到uri，后面就是将uri转化成file的过程。
             String path = getRealFilePath(this, uri);
             paths.add(path);
-            arrayAdapter.notifyDataSetChanged();
-            tvCount.setText("已选择" + paths.size() + "个文件");
+            refresh();
         }
+    }
+    private void refresh(){
+        arrayAdapter.notifyDataSetChanged();
+        tvCount.setText("已选择" + paths.size() + "个文件");
     }
 
     private void clearList() {
         paths.clear();
-        arrayAdapter.notifyDataSetChanged();
-        tvCount.setText("已选择" + paths.size() + "个文件");
+        refresh();
     }
 
     private void addPic() {
@@ -136,8 +136,8 @@ public class UploadActivity extends AppCompatActivity {
     }
 
     private void uploadAll() {
-        if(paths.size()<1){
-            ToastUtils.showToast(this,"没有选择文件");
+        if (paths.size() < 1) {
+            ToastUtils.showToast(this, "没有选择文件");
             return;
         }
         List<File> files = new ArrayList<>();
@@ -149,7 +149,7 @@ public class UploadActivity extends AppCompatActivity {
         MultipartBody body = MultipartBuilder.filesToMultipartBody(files);
         String username = UserPreferences.getInstance(this).getUserName();
         RetrofitBuilder.getApiService()
-               .uploadFileWithRequestBody(body, username)
+                .uploadFileWithRequestBody(body, username)
                 .compose(RxHelper.<String>handleResult())
                 .subscribe(new RxSubscribe<String>(this, "请稍等...") {
                     @Override
