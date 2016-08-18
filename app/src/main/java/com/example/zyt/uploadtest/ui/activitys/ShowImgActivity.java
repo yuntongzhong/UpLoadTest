@@ -86,7 +86,6 @@ public class ShowImgActivity extends AppCompatActivity {
             if (filename.endsWith(".jpg") || filename.endsWith(".png")
                     || filename.endsWith(".jpeg") || filename.endsWith(".gif")) {
                 temp.add(imageInfo);
-                Log.e(TAG, imageInfo.toString());
             }
         }
         return temp;
