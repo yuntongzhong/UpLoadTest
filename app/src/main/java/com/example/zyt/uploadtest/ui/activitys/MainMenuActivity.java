@@ -23,13 +23,11 @@ public class MainMenuActivity extends AppCompatActivity {
     @Bind(R.id.show)
     Button show;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mian_menu_activity);
         ButterKnife.bind(this);
-
     }
 
     @OnClick({R.id.upload, R.id.show})
@@ -43,8 +41,4 @@ public class MainMenuActivity extends AppCompatActivity {
                 break;
         }
     }
-
-
-
-
 }

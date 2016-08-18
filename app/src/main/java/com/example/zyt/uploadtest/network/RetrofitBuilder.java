@@ -7,7 +7,6 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by Administrator on 2016/6/3.
@@ -15,9 +14,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitBuilder {
     private static Retrofit retrofit;
     private static OkHttpClient client;
-    private static ImageService imageService;
+    private static ApiService imageService;
 
-    public synchronized static ImageService  getApiService() {
+    public synchronized static ApiService getApiService() {
         if (retrofit == null) {
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
             GsonConverterFactory gsonConverterFactory = GsonConverterFactory.create(gson);
@@ -28,8 +27,7 @@ public class RetrofitBuilder {
                     //.addConverterFactory(ScalarsConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
-            imageService=retrofit.create(ImageService.class);
-
+            imageService=retrofit.create(ApiService.class);
         }
         return imageService;
     }

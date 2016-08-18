@@ -1,12 +1,9 @@
 package com.example.zyt.uploadtest.network;
 
-import com.example.zyt.uploadtest.entity.ImageInfo;
+import com.example.zyt.uploadtest.entity.BaseModel;
 import com.example.zyt.uploadtest.entity.Result;
 
-import java.util.List;
-
 import okhttp3.MultipartBody;
-import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -16,9 +13,15 @@ import rx.Observable;
 /**
  * Created by Administrator on 2016/6/7.
  */
-public interface ImageService {
+public interface ApiService {
+    @POST("WebServer/Login")
+    Observable<BaseModel<String>> login(@Query("username") String userName, @Query("password") String password);
+
+    @POST("WebServer/Register")
+    Observable<BaseModel<String>> register(@Query("username") String userName, @Query("password") String password, @Query("email") String email, @Query("phone") String tel, @Query("sex") String sex);
+
     @GET("WebServer/image")
-    Observable<List<ImageInfo>> getImgInfo(@Query("user") String user);
+    Observable<BaseModel<String>> getImgInfo(@Query("user") String user);
 
     /**
      * 通过 MultipartBody和@body作为参数来上传
@@ -28,8 +31,4 @@ public interface ImageService {
      */
     @POST("WebServer/upload")
     Observable<Result> uploadFileWithRequestBody(@Body MultipartBody multipartBody, @Query("user") String user);
-
-    @POST("WebServer/Login")
-    Observable<Result> login(@Query("username") String userName, @Query("password") String password);
-
 }

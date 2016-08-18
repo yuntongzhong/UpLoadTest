@@ -29,6 +29,8 @@
 
     <color name="btn_normal">#303F9F</color>
     <color name="btn_pressed">#99303F9F</color>
+    <color name="titleBackground">#007cec</color><!--标题颜色 -->
+    <color name="textColorBlack">#000000</color><!--字体颜色 -->
 
     <color name="textColorWhite">#FFFFFF</color><!--白色字体颜色-->
     <color name="loginEdtNoFousColor">#55FFFFFF</color><!--登录界面输入框无焦点颜色-->

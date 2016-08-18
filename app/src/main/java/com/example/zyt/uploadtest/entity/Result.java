@@ -9,7 +9,6 @@ public class Result {
 
     private String result;
 
-
     public String getCode() {
         return code;
     }

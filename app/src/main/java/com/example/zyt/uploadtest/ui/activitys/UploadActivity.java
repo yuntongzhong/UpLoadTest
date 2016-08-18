@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zyt.uploadtest.R;
+import com.example.zyt.uploadtest.config.UserPreferences;
 import com.example.zyt.uploadtest.entity.Result;
-import com.example.zyt.uploadtest.network.ImageService;
 import com.example.zyt.uploadtest.network.MultipartBuilder;
 import com.example.zyt.uploadtest.network.RetrofitBuilder;
 
@@ -111,13 +111,13 @@ public class UploadActivity extends AppCompatActivity {
         }
     }
 
-    private void clearList(){
+    private void clearList() {
         paths.clear();
         arrayAdapter.notifyDataSetChanged();
         tvCount.setText("已选择" + paths.size() + "个文件");
     }
 
-    private void addPic(){
+    private void addPic() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -140,8 +140,9 @@ public class UploadActivity extends AppCompatActivity {
         }
 
         MultipartBody body = MultipartBuilder.filesToMultipartBody(files);
+        String username = UserPreferences.getInstance(this).getUserName();
         RetrofitBuilder.getApiService()
-                .uploadFileWithRequestBody(body, "zhong")
+                .uploadFileWithRequestBody(body, username)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Result>() {
@@ -160,7 +161,6 @@ public class UploadActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
     //根据uri获取绝对路径
     public static String getRealFilePath(final Context context, final Uri uri) {
@@ -185,6 +185,4 @@ public class UploadActivity extends AppCompatActivity {
         }
         return data;
     }
-
-
 }
