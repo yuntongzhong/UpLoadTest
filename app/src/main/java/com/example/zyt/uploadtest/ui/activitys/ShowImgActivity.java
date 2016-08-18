@@ -58,17 +58,7 @@ public class ShowImgActivity extends AppCompatActivity {
                 .subscribe(new RxSubscribe<List<ImageInfo>>(this, "请稍等...") {
                     @Override
                     protected void _onNext(List<ImageInfo> imageInfos) {
-                        gridview.setAdapter(new CommonAdapter<ImageInfo>(ShowImgActivity.this, imageInfos, R.layout.item_fragment_list_imgs) {
-                            @Override
-                            public void convert(ViewHolder holder, ImageInfo imageInfo) {
-                                ImageView imageView = holder.getView(R.id.id_img);
-                                ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-                                layoutParams.height = gridview.getWidth() / 3;
-                                String url = imageInfo.getUrl();
-                                Glide.with(ShowImgActivity.this).load(url)
-                                        .into(imageView);
-                            }
-                        });
+                        setAdapter(imageInfos);
                     }
 
                     @Override
@@ -76,6 +66,20 @@ public class ShowImgActivity extends AppCompatActivity {
                         ToastUtils.showToast(ShowImgActivity.this, message);
                     }
                 });
+    }
+
+    void setAdapter(List<ImageInfo> imageInfos) {
+        gridview.setAdapter(new CommonAdapter<ImageInfo>(ShowImgActivity.this, imageInfos, R.layout.item_fragment_list_imgs) {
+            @Override
+            public void convert(ViewHolder holder, ImageInfo imageInfo) {
+                ImageView imageView = holder.getView(R.id.id_img);
+                ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+                layoutParams.height = gridview.getWidth() / 3;
+                String url = imageInfo.getUrl();
+                Glide.with(ShowImgActivity.this).load(url)
+                        .into(imageView);
+            }
+        });
     }
 
     //过滤非图片信息

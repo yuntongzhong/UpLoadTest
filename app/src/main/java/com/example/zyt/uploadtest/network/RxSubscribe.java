@@ -49,7 +49,7 @@ public abstract class RxSubscribe<T> extends Subscriber<T> {
             dialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE)
                     .setTitleText(msg);
             dialog.setCancelable(true);
-            dialog.setCanceledOnTouchOutside(true);
+            dialog.setCanceledOnTouchOutside(false);
             //点击取消的时候取消订阅
             dialog.setOnCancelListener(dialog1 -> unSubscribe());
             dialog.show();
@@ -71,9 +71,8 @@ public abstract class RxSubscribe<T> extends Subscriber<T> {
     @Override
     public void onError(Throwable e) {
         e.printStackTrace();
-        if (false) { //这里自行替换判断网络的代码
-            _onError("网络不可用");
-        } else if (e instanceof ServerException) {
+        Log.e("RxSubscribe",e.getMessage());
+        if (e instanceof ServerException) {
             _onError(e.getMessage());
         } else {
             _onError("请求失败，请稍后再试...");

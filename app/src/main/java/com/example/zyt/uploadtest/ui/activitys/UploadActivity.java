@@ -18,9 +18,13 @@ import android.widget.Toast;
 
 import com.example.zyt.uploadtest.R;
 import com.example.zyt.uploadtest.config.UserPreferences;
+import com.example.zyt.uploadtest.entity.ImageInfo;
 import com.example.zyt.uploadtest.entity.Result;
 import com.example.zyt.uploadtest.network.MultipartBuilder;
 import com.example.zyt.uploadtest.network.RetrofitBuilder;
+import com.example.zyt.uploadtest.network.RxHelper;
+import com.example.zyt.uploadtest.network.RxSubscribe;
+import com.example.zyt.uploadtest.utils.ToastUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -132,32 +136,30 @@ public class UploadActivity extends AppCompatActivity {
     }
 
     private void uploadAll() {
+        if(paths.size()<1){
+            ToastUtils.showToast(this,"没有选择文件");
+            return;
+        }
         List<File> files = new ArrayList<>();
         for (String path : paths) {
             File file = new File(path);
             if (file.exists())
                 files.add(file);
         }
-
         MultipartBody body = MultipartBuilder.filesToMultipartBody(files);
         String username = UserPreferences.getInstance(this).getUserName();
         RetrofitBuilder.getApiService()
-                .uploadFileWithRequestBody(body, username)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Result>() {
+               .uploadFileWithRequestBody(body, username)
+                .compose(RxHelper.<String>handleResult())
+                .subscribe(new RxSubscribe<String>(this, "请稍等...") {
                     @Override
-                    public void onCompleted() {
+                    protected void _onNext(String result) {
+                        ToastUtils.showToast(UploadActivity.this, result);
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onNext(Result s) {
-                        Toast.makeText(UploadActivity.this, s.getResult(), Toast.LENGTH_SHORT).show();
+                    protected void _onError(String message) {
+                        ToastUtils.showToast(UploadActivity.this, message);
                     }
                 });
     }

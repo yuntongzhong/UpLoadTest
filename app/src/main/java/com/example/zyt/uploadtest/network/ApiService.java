@@ -29,6 +29,8 @@ public interface ApiService {
      * @param multipartBody MultipartBody包含多个Part
      * @return 状态信息
      */
+//    @POST("WebServer/upload")
+//    Observable<Result> uploadFileWithRequestBody(@Body MultipartBody multipartBody, @Query("user") String user);
     @POST("WebServer/upload")
-    Observable<Result> uploadFileWithRequestBody(@Body MultipartBody multipartBody, @Query("user") String user);
+    Observable<BaseModel<String>> uploadFileWithRequestBody(@Body MultipartBody multipartBody, @Query("user") String user);
 }
