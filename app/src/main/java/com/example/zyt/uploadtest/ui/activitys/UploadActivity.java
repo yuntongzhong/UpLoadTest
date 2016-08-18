@@ -14,12 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.zyt.uploadtest.R;
 import com.example.zyt.uploadtest.config.UserPreferences;
-import com.example.zyt.uploadtest.entity.ImageInfo;
-import com.example.zyt.uploadtest.entity.Result;
 import com.example.zyt.uploadtest.network.MultipartBuilder;
 import com.example.zyt.uploadtest.network.RetrofitBuilder;
 import com.example.zyt.uploadtest.network.RxHelper;
@@ -36,12 +33,8 @@ import butterknife.OnClick;
 import butterknife.OnItemClick;
 import butterknife.OnItemLongClick;
 import okhttp3.MultipartBody;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class UploadActivity extends AppCompatActivity {
-    public static final String TAG = UploadActivity.class.getSimpleName();
     public static final int SELECTOR_FILE = 0X1235;
 
     @Bind(R.id.listview)
@@ -111,7 +104,8 @@ public class UploadActivity extends AppCompatActivity {
             refresh();
         }
     }
-    private void refresh(){
+
+    private void refresh() {
         arrayAdapter.notifyDataSetChanged();
         tvCount.setText("已选择" + paths.size() + "个文件");
     }

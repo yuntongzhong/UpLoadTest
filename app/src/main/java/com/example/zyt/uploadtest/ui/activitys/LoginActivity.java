@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +25,6 @@ import butterknife.OnClick;
  * Created by zyt on 2016/8/16.
  */
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "LoginActivity";
 
     @Bind(R.id.edt_userName)
     TextInputLayout edtUserName;

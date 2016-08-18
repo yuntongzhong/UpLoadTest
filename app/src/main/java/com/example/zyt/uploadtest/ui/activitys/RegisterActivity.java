@@ -29,8 +29,6 @@ import butterknife.OnClick;
  * Created by zyt on 2016/3/14.
  */
 public class RegisterActivity extends AppCompatActivity {
-    private static final String TAG = "RegisterActivity";
-
 
     @Bind(R.id.edt_userName)
     TextInputLayout edtUserName;
@@ -62,18 +60,15 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
         addListener();
-        rgSex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                //checkId就是当前选中的RadioButton
-                switch (checkedId) {
-                    case R.id.rbtn_man:
-                        sex = rbtnMan.getText().toString();
-                        break;
-                    case R.id.rbtn_woman:
-                        sex = rbtnWoman.getText().toString();
-                        break;
-                }
+        rgSex.setOnCheckedChangeListener((group, checkedId) -> {
+            //checkId就是当前选中的RadioButton
+            switch (checkedId) {
+                case R.id.rbtn_man:
+                    sex = rbtnMan.getText().toString();
+                    break;
+                case R.id.rbtn_woman:
+                    sex = rbtnWoman.getText().toString();
+                    break;
             }
         });
     }
@@ -162,7 +157,6 @@ public class RegisterActivity extends AppCompatActivity {
                 .subscribe(new RxSubscribe<String>(this, "请稍等...") {
                     @Override
                     protected void _onNext(String message) {
-                        Log.i(TAG, message);
                         UserPreferences.getInstance(RegisterActivity.this).setUserName(uesrName);
                         startActivity(new Intent(RegisterActivity.this, MainMenuActivity.class));
                         RegisterActivity.this.finish();

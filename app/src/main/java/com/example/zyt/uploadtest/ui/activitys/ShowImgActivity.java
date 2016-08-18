@@ -3,7 +3,6 @@ package com.example.zyt.uploadtest.ui.activitys;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -17,7 +16,6 @@ import com.example.zyt.uploadtest.network.RxHelper;
 import com.example.zyt.uploadtest.network.RxSubscribe;
 import com.example.zyt.uploadtest.ui.adapter.CommonAdapter;
 import com.example.zyt.uploadtest.ui.adapter.ViewHolder;
-import com.example.zyt.uploadtest.utils.ToastUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -32,7 +30,6 @@ import rx.functions.Func1;
  * Created by Administrator on 2016/6/7.
  */
 public class ShowImgActivity extends AppCompatActivity {
-    public static final String TAG = "ShowImgActivity";
 
     @Bind(R.id.gridview)
     GridView gridview;
