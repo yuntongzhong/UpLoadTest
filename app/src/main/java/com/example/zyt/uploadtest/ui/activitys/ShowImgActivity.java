@@ -52,7 +52,7 @@ public class ShowImgActivity extends AppCompatActivity {
                         new TypeToken<List<ImageInfo>>() {
                         }.getType()))
                 .map(imageInfos -> imgsFilter(imageInfos))
-                .subscribe(new RxSubscribe<List<ImageInfo>>(this, "请稍等...") {
+                .subscribe(new RxSubscribe<List<ImageInfo>>(this) {
                     @Override
                     protected void _onNext(List<ImageInfo> imageInfos) {
                         setAdapter(imageInfos);

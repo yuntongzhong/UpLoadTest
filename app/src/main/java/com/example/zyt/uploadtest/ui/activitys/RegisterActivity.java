@@ -154,7 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
         RetrofitBuilder.getApiService()
                 .register(uesrName, userPwd, email, phone, sex)
                 .compose(RxHelper.<String>handleResult())
-                .subscribe(new RxSubscribe<String>(this, "请稍等...") {
+                .subscribe(new RxSubscribe<String>(this) {
                     @Override
                     protected void _onNext(String message) {
                         UserPreferences.getInstance(RegisterActivity.this).setUserName(uesrName);

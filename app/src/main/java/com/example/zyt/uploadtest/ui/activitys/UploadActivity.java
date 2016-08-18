@@ -145,7 +145,7 @@ public class UploadActivity extends AppCompatActivity {
         RetrofitBuilder.getApiService()
                 .uploadFileWithRequestBody(body, username)
                 .compose(RxHelper.<String>handleResult())
-                .subscribe(new RxSubscribe<String>(this, "请稍等...") {
+                .subscribe(new RxSubscribe<String>(this, "正在上传...") {
                     @Override
                     protected void _onNext(String result) {
                         ToastUtils.showToast(UploadActivity.this, result);
