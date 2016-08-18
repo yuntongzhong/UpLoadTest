@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     private void login() {
         String userName = edtUserName.getEditText().getText().toString();
         String passWord = edtPassward.getEditText().getText().toString();
+        UserPreferences.getInstance(LoginActivity.this).setUserName(userName);
         if (userName.length() < 1) {
             ToastUtils.showToast(this, "用户名不能为空");
             return;
@@ -77,9 +78,6 @@ public class LoginActivity extends AppCompatActivity {
                 .subscribe(new RxSubscribe<String>(this, "登录中...") {
                     @Override
                     protected void _onNext(String message) {
-                        Log.i(TAG, message);
-                        String userName = edtUserName.getEditText().getText().toString();
-                        UserPreferences.getInstance(LoginActivity.this).setUserName(userName);
                         startActivity(new Intent(LoginActivity.this, MainMenuActivity.class));
                     }
                 });
