@@ -168,10 +168,6 @@ public class RegisterActivity extends AppCompatActivity {
                         RegisterActivity.this.finish();
                     }
 
-                    @Override
-                    protected void _onError(String message) {
-                        ToastUtils.showToast(RegisterActivity.this, message);
-                    }
                 });
     }
 }

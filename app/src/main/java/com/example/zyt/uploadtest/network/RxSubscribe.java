@@ -3,6 +3,8 @@ package com.example.zyt.uploadtest.network;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.zyt.uploadtest.utils.ToastUtils;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import rx.Subscriber;
 
@@ -73,9 +75,11 @@ public abstract class RxSubscribe<T> extends Subscriber<T> {
         e.printStackTrace();
         Log.e("RxSubscribe",e.getMessage());
         if (e instanceof ServerException) {
-            _onError(e.getMessage());
+           // _onError(e.getMessage());
+            ToastUtils.showToast(mContext,e.getMessage());
         } else {
-            _onError("请求失败，请稍后再试...");
+           // _onError("请求失败，请稍后再试...");
+            ToastUtils.showToast(mContext,"请求失败，请稍后再试...");
         }
         unSubscribe();
         if (showDialog())
@@ -84,6 +88,6 @@ public abstract class RxSubscribe<T> extends Subscriber<T> {
 
     protected abstract void _onNext(T t);
 
-    protected abstract void _onError(String message);
+   // protected abstract void _onError(String message);
 
 }

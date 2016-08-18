@@ -82,11 +82,6 @@ public class LoginActivity extends AppCompatActivity {
                         UserPreferences.getInstance(LoginActivity.this).setUserName(userName);
                         startActivity(new Intent(LoginActivity.this, MainMenuActivity.class));
                     }
-
-                    @Override
-                    protected void _onError(String message) {
-                        ToastUtils.showToast(LoginActivity.this, message);
-                    }
                 });
     }
 }

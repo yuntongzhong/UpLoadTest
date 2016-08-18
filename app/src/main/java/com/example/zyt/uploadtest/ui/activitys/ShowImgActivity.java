@@ -60,11 +60,6 @@ public class ShowImgActivity extends AppCompatActivity {
                     protected void _onNext(List<ImageInfo> imageInfos) {
                         setAdapter(imageInfos);
                     }
-
-                    @Override
-                    protected void _onError(String message) {
-                        ToastUtils.showToast(ShowImgActivity.this, message);
-                    }
                 });
     }
 

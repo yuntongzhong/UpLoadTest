@@ -156,11 +156,6 @@ public class UploadActivity extends AppCompatActivity {
                     protected void _onNext(String result) {
                         ToastUtils.showToast(UploadActivity.this, result);
                     }
-
-                    @Override
-                    protected void _onError(String message) {
-                        ToastUtils.showToast(UploadActivity.this, message);
-                    }
                 });
     }
 
